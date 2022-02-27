@@ -7,11 +7,22 @@ import Right from './page/right';
 import {json, checkStatus} from './utils';
 import $ from 'jquery';
 
+const ListAllTweet = (prop) => {
+  const {listAllTweet} = prop;
+
+  return (<React.Fragment>
+    <p>`@ ${listAllTweet.username}`</p>
+    <p>{listAllTweet.message}</p>
+    </React.Fragment>
+  )
+
+}
+
 class Tweet extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      tweet: [],
+      listAllTweet: [],
     }
   };
 
@@ -22,8 +33,8 @@ class Tweet extends React.Component{
     .then(data => {
       console.log(data);
       this.setState({
-        tweet: data.tweets
-      }, () => console.log(this.state.tweet));
+        listAllTweet: data.tweets
+      }, () => console.log(this.state.listAllTweet));
     })
     .catch(error => {
       console.log(error);
@@ -31,13 +42,21 @@ class Tweet extends React.Component{
   }
 
   render(){
+
+    const {listAllTweet} = this.state;
+
     return (
       <React.Fragment>
         <Nva />
           <div className='container'>
             <div className='row'>
               <Left />
-              <Middle />
+              
+              <div className='col-9 col-md-6'>
+                <Middle />
+                {listAllTweet.map(listAllTweet => <ListAllTweet key={listAllTweet.id} listAllTweet={listAllTweet} />)}
+              </div>
+
               <Right />
             </div>
           </div>

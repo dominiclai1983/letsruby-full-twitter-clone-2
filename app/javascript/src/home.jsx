@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Layout from './layout';
@@ -8,8 +8,8 @@ import $ from 'jquery';
 
 import './home.scss';
 
-const Home = () => (
-  <React.Fragment>
+export const Home = () => (
+  <div>
     <i className="fab fa-twitter fa-5x"></i>
     <h1>Happening now</h1>
     <h3>Join Twitter today.</h3>
@@ -20,51 +20,33 @@ const Home = () => (
     <Link to="/login"> 
       <button type="button" className="btn btn-secondary btn-lg btn-block">Sign in</button>
     </Link>      
-  </React.Fragment>
+  </div>
 )
 
-const App = () => {
-
-  const loginStatus = () => {
-
-    const token = localStorage.getItem('token');
-
-    var request = {
-      type: 'GET',
-      url: 'api/authenticated',
-      headers: {
-        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-      },
-      data:{
-        token: token
-      },
-      success: function (response) {
-        setLogin(!login);
-        window.location.href = '/tweet';
-
-      },
-      error: function (request, errorMsg) {
-        console.log(request, errorMsg);
-        console.log("error");
-      }
+class App extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      authenticated: false
     }
+  }; 
 
-    $.ajax(request);
+  render(){
+    return(
+        <BrowserRouter>
+        <Layout>
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </Layout>
+        </BrowserRouter>
+    );
   }
-
-
-  return (
-    <BrowserRouter>
-    <Layout>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-      </Routes>
-    </Layout>
-    </BrowserRouter>
-  );
 }
+
+export default App;
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(

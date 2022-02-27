@@ -1,16 +1,31 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
+import {safeCredentials, handleErrors} from '../utils.js'
 import './middle.scss';
 
+const handleTweetSubmit = () => {
+  fetch('/api/tweets', safeCredentials({
+    method: 'POST',
+    body: JSON.stringify({
+      tweet:{
+        message: tweet
+      }
+    })
+  }))
+  .then(handleErrors)
+  .then(res => {
+    console.log(res);
+  })
 
+}
 
-const Input = () => {
+const Middle = () => {
 
   const [tweet, setTweet] = useState("");
 
   return (
     <React.Fragment>
     <h3>Home</h3>
-      <form>
+      <form onSubmit={handleTweetSubmit}>
         <div className="input-group mb-1">
           <textarea className="form-control" maxLength="280" aria-label="With textarea" placeholder="What's Happening?"
           onChange = {event => {
@@ -24,16 +39,7 @@ const Input = () => {
       </form>
     </React.Fragment>
   )
-}
 
-const Middle = (props) => {
-  const {middle} = props;
-  
-  return (
-    <div className='col-9 col-md-6'>
-      <Input />
-    </div>
-  )
 }
 
 export default Middle;
