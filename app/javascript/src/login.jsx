@@ -23,9 +23,6 @@ const Login = () => {
         user: login
       },
       success: function (response) {
-        console.log("success");
-        setLogin(!login);
-        localStorage.setItem('token', data.token);
         window.location.href = '/tweet';
 
       },

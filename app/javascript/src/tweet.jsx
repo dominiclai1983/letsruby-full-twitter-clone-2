@@ -1,11 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import Nva from './page/nva';
 import Left from './page/left';
 import Middle from './page/middle';
 import Right from './page/right';
 import {json, checkStatus} from './utils';
-import $ from 'jquery';
 
 const ListAllTweet = (prop) => {
   const {listAllTweet} = prop;

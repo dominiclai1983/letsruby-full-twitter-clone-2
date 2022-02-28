@@ -2,19 +2,29 @@ import React, {useState} from 'react';
 import {safeCredentials, handleErrors} from '../utils.js'
 import './middle.scss';
 
-const handleTweetSubmit = () => {
-  fetch('/api/tweets', safeCredentials({
-    method: 'POST',
-    body: JSON.stringify({
-      tweet:{
-        message: tweet
-      }
-    })
-  }))
-  .then(handleErrors)
-  .then(res => {
-    console.log(res);
-  })
+const handleTweetSubmit = (event) => {
+
+  event.preventDefault();
+
+  var request = {
+    type: 'POST', 
+    url: 'api/tweets',
+    headers: {
+      'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+    },
+    data:{
+      message: "testing"
+    },
+    success: function (response) {
+      console.log("success")
+
+    },
+    error: function (request, errorMsg) {
+      console.log(request, errorMsg);
+      console.log("error");
+    }
+  }
+  $.ajax(request);
 
 }
 
@@ -34,7 +44,7 @@ const Middle = () => {
           </textarea>
         </div>
         <div className="d-flex justify-content-end">
-          <button type="submit" className="btn btn-primary btn-sm">Tweet</button>
+          <button type="submit" className="btn btn-primary btn-sm" onClick={handleTweetSubmit}>Tweet</button>
         </div>
       </form>
     </React.Fragment>
