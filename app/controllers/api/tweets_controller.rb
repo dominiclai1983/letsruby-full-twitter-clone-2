@@ -49,7 +49,7 @@ module Api
     private
 
       def tweet_params
-        params.require(:tweet).permit(:message, :image)
+        params.require(:tweet).permit(:message)
       end
   end
 end

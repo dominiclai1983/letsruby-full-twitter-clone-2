@@ -1,36 +1,36 @@
 import React, {useState} from 'react';
 import {safeCredentials, handleErrors} from '../utils.js'
+import $ from 'jquery';
 import './middle.scss';
-
-const handleTweetSubmit = (event) => {
-
-  event.preventDefault();
-
-  var request = {
-    type: 'POST', 
-    url: 'api/tweets',
-    headers: {
-      'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-    },
-    data:{
-      message: "testing"
-    },
-    success: function (response) {
-      console.log("success")
-
-    },
-    error: function (request, errorMsg) {
-      console.log(request, errorMsg);
-      console.log("error");
-    }
-  }
-  $.ajax(request);
-
-}
 
 const Middle = () => {
 
-  const [tweet, setTweet] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleTweetSubmit = () => {
+
+    var request = {
+      type: 'POST', 
+      url: 'api/tweets',
+      headers: {
+        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+      },
+      data:{
+        tweet: {
+          message
+        }
+      },
+      success: function (response) {
+        console.log("success")
+      },
+      error: function (request, errorMsg) {
+        console.log(request, errorMsg);
+        console.log("error");
+      }
+    }
+    $.ajax(request);
+  
+  }
 
   return (
     <React.Fragment>
@@ -40,11 +40,11 @@ const Middle = () => {
           <textarea className="form-control" maxLength="280" aria-label="With textarea" placeholder="What's Happening?"
           onChange = {event => {
             event.preventDefault();
-            setTweet(event.target.value)}}>
+            setMessage(event.target.value)}}>
           </textarea>
         </div>
         <div className="d-flex justify-content-end">
-          <button type="submit" className="btn btn-primary btn-sm" onClick={handleTweetSubmit}>Tweet</button>
+          <button type="submit" className="btn btn-primary btn-sm mb-3" >Tweet</button>
         </div>
       </form>
     </React.Fragment>

@@ -23,8 +23,10 @@ const Login = () => {
         user: login
       },
       success: function (response) {
+        console.log(response.success);
+        {/*
         window.location.href = '/tweet';
-
+        */}
       },
       error: function (request, errorMsg) {
         console.log(request, errorMsg);
