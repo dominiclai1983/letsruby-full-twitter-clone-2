@@ -153,27 +153,6 @@ class Tweet extends React.Component{
       }
     }
     $.ajax(request);
-  
-    /*
-    fetch(`api/tweets/${id}`, {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ tweet: {
-        id: id
-      }})
-    })
-    .then(checkStatus)
-    .then(json)
-    .then(data => {
-      console.log(data);
-      this.setState({
-        listAllTweet: data.tweets
-      })
-    })
-    .catch(error => {
-      console.log(error);
-    })
-    */
 
   }
 
