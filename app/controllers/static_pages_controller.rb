@@ -1,11 +1,10 @@
 class StaticPagesController < ApplicationController
-
   def home
     render 'home'
   end
 
   def signup
-    render 'home'
+    redirect_to 'home'
   end
 
   def login
@@ -14,5 +13,4 @@ class StaticPagesController < ApplicationController
 
   def tweet
   end 
-
 end

@@ -1,8 +1,7 @@
-import React, {useState} from 'react'
-import Layout from './layout';
+import React, {useState, createContext} from 'react'
 import $ from 'jquery';
 
-const Login = ({onLogin}) => {
+const Login = () => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -12,15 +11,39 @@ const Login = ({onLogin}) => {
     password
   }
 
+  const handleLogin = () => {
+    
+    var request = {
+      type: 'POST', 
+      url: 'api/sessions',
+      headers: {
+        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+      },
+      data:{
+        user: login
+      },
+      success: function (response) {
+        console.log(response.success);
+        {/*
+        window.location.href = '/tweet';
+        */}
+      },
+      error: function (request, errorMsg) {
+        console.log(request, errorMsg);
+        console.log("error");
+      }
+    }
+    $.ajax(request);
+  }
+
   return (
-    <Layout>
+    <div>
       <h1>Login To Your Account</h1>
-        <form onSubmit={() => onLogin(login)}>
+        <form onSubmit={handleLogin}>
           <div className="form-group">
             <label htmlFor="exampleInputEmail">Username</label>
             <input type="text" className="form-control" id="exampleUsername" placeholder="username" 
               onChange = {event => {
-                console.log(event.target.value);
                 event.preventDefault();
                 setUsername(event.target.value);
             }}/>
@@ -35,7 +58,7 @@ const Login = ({onLogin}) => {
           </div>
         <button type="submit" className="btn btn-primary">Submit</button>
         </form>
-    </Layout>
+    </div>
   )
 }
 

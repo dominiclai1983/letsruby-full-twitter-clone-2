@@ -22,9 +22,6 @@ const Middle = () => {
       },
       success: function (response) {
         console.log("success")
-        this.setState({
-          allmode: true,
-        })
       },
       error: function (request, errorMsg) {
         console.log(request, errorMsg);

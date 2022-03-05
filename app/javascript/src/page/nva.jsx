@@ -6,15 +6,21 @@ const Nva = () => {
 
   const handleLogout = () => {
 
+    const token = localStorage.getItem('token');
+
     var request = {
       type: 'DELETE',
       url: 'api/sessions',
       headers: {
         'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
       },
+      data:{
+        token: token
+      },
       success: function (response) {
         console.log("logout")
         window.location.href = '/';
+
       },
       error: function (request, errorMsg) {
         console.log(request, errorMsg);
@@ -23,7 +29,6 @@ const Nva = () => {
     }
     $.ajax(request);
   }
-
 
   return (
     <React.Fragment>

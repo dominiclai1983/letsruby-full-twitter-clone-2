@@ -2,7 +2,7 @@
   "name": "twitter_clone",
   "version": "1.0.0",
   "engines": {
-    "node": "14.19.0"
+    "node": "~14.19.0"
   },
   "dependencies": {
     "@babel/preset-react": "^7.0.0",
@@ -16,7 +16,7 @@
     "react": "^16.8.6",
     "react-bootstrap": "^2.1.2",
     "react-dom": "^16.8.6",
-    "react-router-dom": "5"
+    "react-router-dom": "^6.2.1"
   },
   "devDependencies": {
     "webpack-dev-server": "^3.7.2"

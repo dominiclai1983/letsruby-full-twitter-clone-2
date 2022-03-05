@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import Layout from './layout';
 import $ from 'jquery';
 
 const Signup = () => {
@@ -27,7 +26,6 @@ const Signup = () => {
       },
       success: function (response) {
         console.log(response);
-        window.location.href = '/success';
       },
       error: function (request, errorMsg) {
         console.log(request, errorMsg);
@@ -37,7 +35,7 @@ const Signup = () => {
   };
 
   return (
-    <Layout>
+    <div>
       <h1>Create Your Account</h1>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -63,7 +61,7 @@ const Signup = () => {
         </div>
       <button type="submit" className="btn btn-primary" >Submit</button>
       </form>
-    </Layout>
+    </div>
   )
 }
 

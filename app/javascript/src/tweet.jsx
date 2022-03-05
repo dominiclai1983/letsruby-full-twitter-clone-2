@@ -56,8 +56,7 @@ class Tweet extends React.Component{
       authenticated: null,
       username: null,
       change: false,
-      allmode: true,
-      changeTweet: ''
+      allmode: true
     };
 
     this.handleAllTweet = this.handleAllTweet.bind(this);
@@ -68,33 +67,22 @@ class Tweet extends React.Component{
 
   componentDidMount(){
 
-    this.checkLogin();
-
-    this.handleAllTweet();
-
-  }
-
-  checkLogin(){
+    let {listAllTweet, authenticated, username} = this.state;
 
     fetch('api/authenticated')
     .then(checkStatus)
     .then(json)
     .then(data => {
-      if(data && data.authenticated){
-      this.handleAllTweet();  
       this.setState({
-          authenticated: data.authenticated,
-          username: data.username
-        })
-      }if(!data.authenticated){
-        window.location.href = '/';
-      }
+        authenticated: data.authenticated,
+        username: data.username
+      });
     })
     .catch(error => {
       console.log(error);
-      window.location.href = '/';
     })
 
+    this.handleAllTweet();
   }
 
   //getting all tweet from API
@@ -166,12 +154,7 @@ class Tweet extends React.Component{
     }
     $.ajax(request);
 
-    this.handleUserTweet();
-
   }
-
-
-
 
   render(){
 
@@ -190,7 +173,7 @@ class Tweet extends React.Component{
               
               <div className='col-9 col-md-6'>
                 <Middle />
-                {allmode? listAllTweet.map(listAllTweet => <ListAllTweet key={listAllTweet.id} listAllTweet={listAllTweet} />) : 
+                  {allmode? listAllTweet.map(listAllTweet => <ListAllTweet key={listAllTweet.id} listAllTweet={listAllTweet} />) : 
                   listAllTweet.map(listAllTweet => <ListUserTweet key={listAllTweet.id} listAllTweet={listAllTweet} onDelete={this.handleDeleteTweet} />)
                 }
               </div>
