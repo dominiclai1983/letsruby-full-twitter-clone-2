@@ -12,7 +12,7 @@ const Layout = (props) => {
                     <div><img src="https://i.imgur.com/gCar7Gr.png" width="350" height="350" alt="icon" /></div>
                 </div>
                 <div className='col-12 col-md-6 right-page'>
-                  {props.children}
+                  {props.children} 
                 </div>
             </div>
         </div>
