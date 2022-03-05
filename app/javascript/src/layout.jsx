@@ -3,7 +3,7 @@ import './layout.scss'
 
 const Layout = (props) => {
   return (
-    <React.Fragment>
+    <div>
         <div className='container min-vw-100'>
             <div className='row'>
                 {/*left hand side*/}
@@ -16,7 +16,7 @@ const Layout = (props) => {
                 </div>
             </div>
         </div>
-    </React.Fragment>
+    </div>
   )
 }
 
