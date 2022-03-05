@@ -28,6 +28,8 @@ gem 'jbuilder', '~> 2.11'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1'
 
+gem 'rake', '13.0.6'
+
 # Bootstrap
 gem 'bootstrap', '~> 5.1'
 
