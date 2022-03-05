@@ -1,0 +1,19 @@
+current directory: /Users/dominiclai/Documents/full_stack_twitter_clone/vendor/cache/ruby/3.0.0/gems/byebug-11.1.3/ext/byebug
+/Users/dominiclai/.rbenv/versions/3.0.3/bin/ruby -I /Users/dominiclai/.rbenv/versions/3.0.3/lib/ruby/3.0.0 -r ./siteconf20220305-17159-lah2uh.rb extconf.rb
+creating Makefile
+
+current directory: /Users/dominiclai/Documents/full_stack_twitter_clone/vendor/cache/ruby/3.0.0/gems/byebug-11.1.3/ext/byebug
+make DESTDIR\= clean
+
+current directory: /Users/dominiclai/Documents/full_stack_twitter_clone/vendor/cache/ruby/3.0.0/gems/byebug-11.1.3/ext/byebug
+make DESTDIR\=
+compiling breakpoint.c
+compiling byebug.c
+compiling context.c
+compiling locker.c
+compiling threads.c
+linking shared-object byebug/byebug.bundle
+
+current directory: /Users/dominiclai/Documents/full_stack_twitter_clone/vendor/cache/ruby/3.0.0/gems/byebug-11.1.3/ext/byebug
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 byebug.bundle ./.gem.20220305-17159-g9ibzn/byebug
